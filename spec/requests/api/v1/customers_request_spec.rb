@@ -12,5 +12,16 @@ RSpec.describe 'Customer Subscription Endpoint' do
     get "/api/v1/customers/#{customers[0].id}/subscriptions"
 
     expect(response).to be_successful
+    customer_subs = JSON.parse(response.body, symbolize_names: true)
+    
+    first_sub = customer_subs[:data].first
+    expect(first_sub).to have_key(:id)
+    expect(first_sub).to have_key(:type)
+    expect(first_sub).to have_key(:attributes)
+    expect(first_sub[:attributes]).to have_key(:price)
+    expect(first_sub[:attributes]).to have_key(:active)
+    expect(first_sub[:attributes]).to have_key(:date_shipped)
+    expect(first_sub[:attributes]).to have_key(:frequency)
+    expect(first_sub[:attributes][:price]).to_not eq(subscriptions[2].price)
   end
 end
