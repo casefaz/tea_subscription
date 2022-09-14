@@ -4,12 +4,10 @@ RSpec.describe 'Subscription Sign Up', type: :request do
   context 'happy path' do 
     it 'can create a new customer tea subscription' do 
       customer = create(:customer)
-
-      subscription_params = ({
-                              name: 'Monthly Tea Club',
-                              price: 30.00,
-                              date_shipped: "2022-09-14",
-                              frequency: 1
+      subscription = create(:subscription)
+      customer_sub_params = ({
+                              customer: customer.id,
+                              subscription: subscription.id
                             })
       headers = {"CONTENT_TYPE" => "application/json"}
 
