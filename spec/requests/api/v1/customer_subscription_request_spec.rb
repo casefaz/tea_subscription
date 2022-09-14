@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Customer Subscription Endpoint' do 
+RSpec.describe 'Customer Subscription Endpoint', type: :request do 
   it 'shows all of the subscriptions (active and cancelled) belonging to a specific customer' do 
     customers = create_list(:customer, 2)
     subscriptions = create_list(:subscription, 3)
