@@ -16,12 +16,17 @@ RSpec.describe 'Customer Subscription Endpoint' do
     
     first_sub = customer_subs[:data].first
     expect(first_sub).to have_key(:id)
+    expect(first_sub[:id]).to be_a(String)
     expect(first_sub).to have_key(:type)
+    expect(first_sub[:type]).to be_a(String)
     expect(first_sub).to have_key(:attributes)
     expect(first_sub[:attributes]).to have_key(:price)
+    expect(first_sub[:attributes][:price]).to be_a(Float)
     expect(first_sub[:attributes]).to have_key(:active)
     expect(first_sub[:attributes]).to have_key(:date_shipped)
+    expect(first_sub[:attributes][:date_shipped]).to be_a(String)
     expect(first_sub[:attributes]).to have_key(:frequency)
+    expect(first_sub[:attributes][:frequency]).to be_an(Integer)
     expect(first_sub[:attributes][:price]).to_not eq(subscriptions[2].price)
   end
 end
