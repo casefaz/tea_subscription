@@ -3,4 +3,8 @@ class Api::V1::CustomerSubscriptionsController < ApplicationController
     customer = Customer.find(params[:id])
     render json: SubscriptionSerializer.new(customer.subscriptions)
   end
+
+  def destroy
+    
+  end
 end

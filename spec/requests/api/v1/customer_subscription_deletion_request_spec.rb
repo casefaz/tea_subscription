@@ -12,6 +12,10 @@ RSpec.describe 'Subscription Cancellation' do
       cust_sub4 = create(:customer_subscription, customer_id: customers[1].id, subscription_id: subscriptions[3].id)
 
       expect(CustomerSubscription.count).to eq(4)
+
+      delete "/api/v1/customers/#{customers[0].id}/subscriptions/#{subscriptions[0].id}"
+
+      expect(response).to be_successful
     end
   end
 end
