@@ -15,6 +15,13 @@ class Api::V1::SubscriptionsController < ApplicationController
     end
   end
 
+  def update
+    # binding.pry
+    subscription = Subscription.find(params[:id])
+    subscription.update(sub_params)
+    render json: subscription
+  end
+
   private
     def sub_params
       params.permit(:customer_id, :tier_id, :status)
