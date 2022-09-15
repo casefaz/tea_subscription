@@ -25,4 +25,19 @@ RSpec.describe 'Subscription Sign Up', type: :request do
       expect(new_sub[:data][:attributes][:tier_id]).to eq(tier.id)
     end
   end
+
+  context 'sad path' do
+    it 'produces an error if fields are missing' do
+      subscription_params = ({
+        customer_id: 999999,
+        tier_id: 0,
+        status: 'cancelled'
+      })
+
+      post "/api/v1/subscriptions", params: subscription_params
+
+      expect(response).to_not be_successful
+      expect(Subscription.last).to eq(nil)
+    end
+  end
 end
