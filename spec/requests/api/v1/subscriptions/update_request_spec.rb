@@ -17,4 +17,16 @@ RSpec.describe 'Subscription Cancellation' do
       expect(updated_sub[:status]).to eq("cancelled")
     end
   end
+
+  context 'sad path' do
+    it 'returns an error if subscription doesnt exist' do
+      patch "/api/v1/customers/1000000/subscriptions/9785"
+
+      expect(response).to_not be_successful
+
+      patch_error = JSON.parse(response.body, symbolize_names: true)
+      expect(patch_error).to be_a(Hash)
+      expect(patch_error[:error]).to eq("Couldn't find Subscription with 'id'=9785")
+    end
+  end
 end
