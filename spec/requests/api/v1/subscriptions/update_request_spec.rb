@@ -13,7 +13,6 @@ RSpec.describe 'Subscription Cancellation' do
 
       expect(response).to be_successful
       updated_sub = JSON.parse(response.body, symbolize_names: true)
-      binding.pry
       expect(updated_sub).to have_key(:status)
       expect(updated_sub[:status]).to eq("cancelled")
     end
