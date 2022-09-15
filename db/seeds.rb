@@ -7,6 +7,10 @@
 #   Character.create(name: "Luke", movie: movies.first)
 # require 'pry'
 # binding.pry
+
+Subscription.destroy_all
+Customer.destroy_all
+Tier.destroy_all
 customer1 = 
   Customer.create!(
     first_name:  Faker::Name.first_name,
@@ -71,7 +75,6 @@ Tier.create!(
   frequency:  Faker::Number.within(range: 1..3) 
 )
 
-# binding.pry
 subscription1 = Subscription.create!(customer_id: customer1.id, tier_id: tier1.id, status: 0)
 subscription2 = Subscription.create!(customer_id: customer1.id, tier_id: tier4.id, status: 1)
 subscription3 = Subscription.create!(customer_id: customer1.id, tier_id: tier5.id, status: 0)
@@ -81,5 +84,6 @@ subscription6 = Subscription.create!(customer_id: customer2.id, tier_id: tier1.i
 subscription7 = Subscription.create!(customer_id: customer3.id, tier_id: tier4.id, status: 1)
 subscription8 = Subscription.create!(customer_id: customer3.id, tier_id: tier5.id, status: 0)
 subscription9 = Subscription.create!(customer_id: customer3.id, tier_id: tier2.id, status: 0)
+
 
 
