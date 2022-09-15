@@ -42,7 +42,10 @@ RSpec.describe 'Customer Subscription Endpoint', type: :request do
       get "/api/v1/customers/9999909/subscriptions"
 
       expect(response).to_not be_successful
-      binding.pry
+      error = JSON.parse(response.body, symbolize_names: true)
+      # binding.pry
+      expect(error).to have_key(:error)
+      expect(error[:error]).to eq("Couldn't find Customer with 'id'=9999909")
     end
   end
 end
