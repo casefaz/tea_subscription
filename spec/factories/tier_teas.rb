@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :subscription_tea do
+  factory :tier_tea do
     subscription
     tea
   end

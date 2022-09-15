@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe 'Customer Subscription Endpoint', type: :request do 
   it 'shows all of the subscriptions (active and cancelled) belonging to a specific customer' do 
     customers = create_list(:customer, 2)
-    subscriptions = create_list(:subscription, 3)
+    tiers = create_list(:tier, 3)
 
-    customer_subscription1 = create(:customer_subscription, customer: customers[0], subscription: subscriptions[0])
-    customer_subscription1 = create(:customer_subscription, customer: customers[0], subscription: subscriptions[1])
-    customer_subscription1 = create(:customer_subscription, customer: customers[1], subscription: subscriptions[2])
+    subscription1 = create(:subscription, customer: customers[0], tier: tiers[0], status: 0)
+    subscription2 = create(:subscription, customer: customers[0], tier: tiers[1], status: 1)
+    subscription3 = create(:subscription, customer: customers[1], tier: tiers[2], status: 0)
 
     get "/api/v1/customers/#{customers[0].id}/subscriptions"
 

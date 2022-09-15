@@ -1,17 +1,21 @@
 class Api::V1::SubscriptionsController < ApplicationController
-  def create
-    new_sub = CustomerSubscription.new(customer_sub_params)
-    
-    # binding.pry
-    if new_sub.save
-      render json: CustomerSubscriptionSerializer.new(new_sub), status: :created
-    else
-      render status: 404
-    end
+  def index
+    binding.pry
+    customer = Customer.find(params[:customer_id])
+    render json: TierSerializer.new(customer.tiers)
   end
 
-  private
-    def customer_sub_params
-      params.permit(:customer_id, :subscription_id)
-    end
+  # def create
+  #   new_sub = Subscription.new(sub_params)
+  #   if new_sub.save
+  #     render json: SubscriptionSerializer.new(new_sub), status: :created
+  #   else
+  #     render status: 404
+  #   end
+  # end
+
+  # private
+  #   def sub_params
+  #     params.permit(:customer_id, :subscription_id)
+  #   end
 end
