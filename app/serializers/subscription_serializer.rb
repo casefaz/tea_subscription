@@ -1,4 +1,4 @@
 class SubscriptionSerializer
   include JSONAPI::Serializer
-  attributes :customer_id, :subscription_id, :status
+  attributes :customer_id, :tier_id, :status
 end
