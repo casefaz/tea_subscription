@@ -1,4 +1,4 @@
 class TierSerializer
   include JSONAPI::Serializer
-  attributes :price, :active, :date_shipped, :frequency, :name
+  attributes :price, :date_shipped, :frequency, :name
 end

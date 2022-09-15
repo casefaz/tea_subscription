@@ -1,6 +1,6 @@
 class Api::V1::SubscriptionsController < ApplicationController
   def index
-    binding.pry
+    # binding.pry
     customer = Customer.find(params[:customer_id])
     render json: TierSerializer.new(customer.tiers)
   end
