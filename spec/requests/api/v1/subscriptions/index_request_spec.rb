@@ -13,7 +13,9 @@ RSpec.describe 'Customer Subscription Endpoint', type: :request do
 
     expect(response).to be_successful
     customer_subs = JSON.parse(response.body, symbolize_names: true)
-    
+
+    expect(customer_subs[:data].count).to eq(2)
+
     first_sub = customer_subs[:data].first
     expect(first_sub).to have_key(:id)
     expect(first_sub[:id]).to be_a(String)
